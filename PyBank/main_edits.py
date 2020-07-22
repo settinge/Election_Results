@@ -1,6 +1,6 @@
 import os
 import csv
-csvpath=os.path.join(os.getcwd(),'Python-Challenge_1', 'PyBank','budget_data.csv')
+csvpath=os.path.join(os.getcwd(),'Python-Challenge_1', 'Resources','budget_data.csv')
 print(csvpath)
 
 with open(csvpath, newline='') as csvfile:

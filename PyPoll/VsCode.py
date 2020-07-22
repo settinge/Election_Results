@@ -1,6 +1,6 @@
 import os
 import csv
-csvpath=os.path.join(os.getcwd(),'election_data.csv')
+csvpath=os.path.join(os.getcwd(),'Python-Challenge_1','Resources','election_data.csv')
 print(csvpath)
 
 with open(csvpath,'r',newline='') as csvfile:
@@ -26,7 +26,7 @@ with open(csvpath,'r',newline='') as csvfile:
     print("-----------------------")
     print(f"Total Votes:{sr}") 
       
-    # print(rs)
+    
     for i in rs:
         number_of_candidate_votes=rs.get(i)
         percentage_of_candidate_votes=round(float(number_of_candidate_votes)/float(sr)*100,2)
@@ -54,30 +54,4 @@ with open(output_file, "w") as datafile:
         datafile.write(str(i)+":"+str(percentage_of_candidate_votes)+"%" +" " +"("+str(number_of_candidate_votes)+")"+"\n")
     datafile.write("Winner:"+str(candidate)+"\n")
     datafile.write("-----------------------") 
-        # print(f"Election Results")
-        # print("------------------------")
-        # print(f"Total Votes: {sr}")
-    # print (f"{percentage_of_candidate_votes}")
-    # print(f"{candidate}")
-
-
-
-
-
-        # names=row[2]   
-        # if row[0]!=' ':
-        #         sr=sr+1
-        #         start_rw=str(start_rw)+row[2]
-                
-        # print(set(start_rw))
-
-
-           
-
-
-
-    # ra.append(sr)
-    # rs.append(names)
-    # length_list=sr
-    # print(length_list)
-            
+       
