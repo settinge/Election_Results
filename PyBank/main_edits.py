@@ -1,6 +1,6 @@
 import os
 import csv
-csvpath=os.path.join(os.getcwd(),'Resources','budget_data.csv')
+csvpath=os.path.join(os.getcwd(),'Python-Challenge_1', 'PyBank','budget_data.csv')
 print(csvpath)
 
 with open(csvpath, newline='') as csvfile:
@@ -46,18 +46,10 @@ with open(csvpath, newline='') as csvfile:
             total_average_profits_losses=sum(greatest_increase)/len(greatest_increase)
         
             
-           
-        # [i for i,x in enumerate(greatest_increase) if x == 1]
+       
             
-            # total_average_profits_losses=sum(list_changes)/len(list_changes)
-        # if grt==value_changes:
-        #     print(len(list_changes))
-        # gen=(i for i, x in enumerate(greatest_increase) if x == max(greatest_increase))
-        # for i in gen: print (i)
-        # exit
-            
-    r_l.append(sr)
-    row_list.append(start_row)
+    # r_l.append(sr)
+    # row_list.append(start_row)
     net_profits_losses=start_row
     number_of_months=sr
     print("Financial Analysis")
@@ -67,18 +59,7 @@ with open(csvpath, newline='') as csvfile:
     print("Average Change:$"+str(total_average_profits_losses))
     print("Greatest Increase in Profits: "+str(list_changes[index_greatest_increase+1])+" ($"+str(grt)+")")
     print("Greatest Decrease in Profits: "+str(list_changes[index_greatest_decrease+1])+" ($"+str(dec)+")")
-    # print(number_of_months)
-    # print(net_profits_losses)
-    # print(list_changes)
-    # print(grt)
-    # print(dec)
-    # # print(greatest_increase)
-    # # print(index_greatest_increase)
-    # print(list_changes[index_greatest_increase+1])
-    # print(list_changes[index_greatest_decrease+1])
-    
-    #print(associated_month)
-    # print(total_average_profits_losses)
+
    
     output_file = os.path.join("budget_data_text.txt")
     with open(output_file, "w") as datafile:
