@@ -1,3 +1,4 @@
+
 # Imports necessary packages
 # To read in csv
 
@@ -6,17 +7,17 @@ import csv
 csvpath = os.path.join(os.getcwd(), 'Resources', 'budget_data.csv')
 print(csvpath)
 
+net_profits_losses = 0
+number_of_months = 0
+list_changes = []
+max_min = []
+
+
 # Opens csvs using with
 
 with open(csvpath, newline='') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
     csv_header = next(csvreader)
-
-    net_profits_losses = 0
-    number_of_months = 0
-    list_changes = []
-    max_min = []
-
 
 # Skip header when looping through csv
 
@@ -63,14 +64,37 @@ with open(csvpath, newline='') as csvfile:
 # a list
 
         list_changes.append(month_changes)
+
+# appends the value changes from each row
+# to a list
+
         max_min.append(value_changes)
+
+# gets the max of the value changes
+
         greatest_increase = max(max_min)
-        max_min.append(value_changes)
+
+# gets the min of the value changes
+
         greatest_decrease = min(max_min)
-        index_greatest_increase = list_changes.index(greatest_decrease)
+
+# gets the month that the greatest
+# increase occurred
+
+        index_greatest_increase = list_changes.index(greatest_increase)
+
+# gets the month the greatest
+# decrease occurred
+
         index_greatest_decrease = list_changes.index(greatest_decrease)
+
+# gets the average change in profits by
+# summing up all changes and dividing by the number
+# of changes
+
         total_average_profits_losses = sum(max_min)/len(max_min)
-      
+
+# prints the data to the terminal
 
     print("Financial Analysis")
     print("------------------------")
@@ -79,6 +103,8 @@ with open(csvpath, newline='') as csvfile:
     print("Average Change:$"+str(total_average_profits_losses))
     print("Greatest Increase in Profits: "+str(list_changes[index_greatest_increase+1])+" ($"+str(greatest_increase)+")")
     print("Greatest Decrease in Profits: "+str(list_changes[index_greatest_decrease+1])+" ($"+str(greatest_decrease)+")")
+
+# writes the data to a text file
 
     output_file = os.path.join("budget_data_text.txt")
     with open(output_file, "w") as datafile:
