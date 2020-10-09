@@ -12,23 +12,23 @@ with open(csvpath, newline='') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
     csv_header = next(csvreader)
 
-    start_row = 0
+    net_profits_losses = 0
     row_list = []
     r_l = []
     sr = 0
     list_changes = []
-    greatest_increase = []
-    greatest_decrease = []
+    max_min = []
+
 
 # Skip header when looping through csv
 
     skip_first_row = next(csvreader)
-    
+
 
 # skip to the second row
 # converts the value in the second column to an int
 
-    start_row = start_row+int(skip_first_row[1])
+    net_profits_losses = net_profits_losses+int(skip_first_row[1])
 
 # skip to the first row
 # converts the value in the first column to an int
@@ -39,29 +39,42 @@ with open(csvpath, newline='') as csvfile:
 
     for row in csvreader:
         sr = sr+1
-# starting from the second row, counts the number of 
-# rows
-        start_row = start_row+int(row[1])
+
+# starting from the first row, sums up
+# the total amount of money
+
+        net_profits_losses = net_profits_losses+int(row[1])
+
 # takes the value of the first row, converts it
 # to an int and subtracts it from the value in
 # the second row
 
         value_changes = int(row[1])-set_value
 
-        # set_value = int(row[1])
+# gets the month from the first column
+# of every row
+
         month_changes = row[0]
+
+# appends the value changes from the subtraction
+# function to a list
+
         list_changes.append(value_changes)
+
+# appends the months from each row to
+# a list
+
         list_changes.append(month_changes)
-        greatest_increase.append(value_changes)
-        grt = max(greatest_increase)
-        greatest_decrease.append(value_changes)
-        dec = min(greatest_decrease)
+        max_min.append(value_changes)
+        grt = max(max_min)
+        max_min.append(value_changes)
+        dec = min(max_min)
         index_greatest_increase = list_changes.index(grt)
         index_greatest_decrease = list_changes.index(dec)
-        total_average_profits_losses = sum(greatest_increase)/len(greatest_increase)
+        total_average_profits_losses = sum(max_min)/len(max_min)
     # r_l.append(sr)
     # row_list.append(start_row)
-    net_profits_losses = start_row
+   
     number_of_months = sr
     print("Financial Analysis")
     print("------------------------")
