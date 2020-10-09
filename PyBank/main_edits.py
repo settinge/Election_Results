@@ -13,9 +13,7 @@ with open(csvpath, newline='') as csvfile:
     csv_header = next(csvreader)
 
     net_profits_losses = 0
-    row_list = []
-    r_l = []
-    sr = 0
+    number_of_months = 0
     list_changes = []
     max_min = []
 
@@ -38,7 +36,7 @@ with open(csvpath, newline='') as csvfile:
 # gets number of months and net profits/losses
 
     for row in csvreader:
-        sr = sr+1
+        number_of_months = number_of_months+1
 
 # starting from the first row, sums up
 # the total amount of money
@@ -66,23 +64,21 @@ with open(csvpath, newline='') as csvfile:
 
         list_changes.append(month_changes)
         max_min.append(value_changes)
-        grt = max(max_min)
+        greatest_increase = max(max_min)
         max_min.append(value_changes)
-        dec = min(max_min)
-        index_greatest_increase = list_changes.index(grt)
-        index_greatest_decrease = list_changes.index(dec)
+        greatest_decrease = min(max_min)
+        index_greatest_increase = list_changes.index(greatest_decrease)
+        index_greatest_decrease = list_changes.index(greatest_decrease)
         total_average_profits_losses = sum(max_min)/len(max_min)
-    # r_l.append(sr)
-    # row_list.append(start_row)
-   
-    number_of_months = sr
+      
+
     print("Financial Analysis")
     print("------------------------")
     print("Total Months: " + str(number_of_months))
     print("Total: $"+str(net_profits_losses))
     print("Average Change:$"+str(total_average_profits_losses))
-    print("Greatest Increase in Profits: "+str(list_changes[index_greatest_increase+1])+" ($"+str(grt)+")")
-    print("Greatest Decrease in Profits: "+str(list_changes[index_greatest_decrease+1])+" ($"+str(dec)+")")
+    print("Greatest Increase in Profits: "+str(list_changes[index_greatest_increase+1])+" ($"+str(greatest_increase)+")")
+    print("Greatest Decrease in Profits: "+str(list_changes[index_greatest_decrease+1])+" ($"+str(greatest_decrease)+")")
 
     output_file = os.path.join("budget_data_text.txt")
     with open(output_file, "w") as datafile:
