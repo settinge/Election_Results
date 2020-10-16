@@ -35,44 +35,28 @@ def main():
 # to the value pair
 
             candidate_info_dict[candidate_name]=candidate_info_dict[candidate_name]+1
-        print("Election Results")
-        print("-----------------------")
-        print(f"Total Votes:{total_votes}") 
       
 # loops through each key, value pair in candidate
 # dict
         for i in candidate_info_dict:
+            output_file = os.path.join("election_data_text.txt")
+            with open(output_file, "w") as datafile:
+                 datafile.write("Election Results\n")
+                 datafile.write("-----------------------\n")
+                 datafile.write("Total Votes:"+ str(total_votes)+"\n")
+
 # gets each value from each candidate
 # which is number of candidate votes
-            number_of_candidate_votes = candidate_info_dict.get(i)
+                 number_of_candidate_votes = candidate_info_dict.get(i)
 # gets the percentage of candidate votes
 # per candidate
-            percentage_of_candidate_votes = round(float(number_of_candidate_votes)/float(total_votes)*100,2)
-# gets the winning candidate
-# by number of votes           
-            if winning_votes < number_of_candidate_votes:
-                winning_votes = number_of_candidate_votes
-                candidate = i
-            print(f"{i}: {percentage_of_candidate_votes}% ({number_of_candidate_votes})")
-        print("-----------------------")
-        print(f"Winner:{candidate}")
-        print("-----------------------")
-
-
-
-
-        output_file = os.path.join("election_data_text.txt")
-    with open(output_file, "w") as datafile:
-        writer = csv.writer(datafile)
-        datafile.write("Election Results\n")
-        datafile.write("-----------------------\n")
-        datafile.write("Total Votes:"+ str(total_votes)+"\n")
-        for i in candidate_info_dict:
-            number_of_candidate_votes = candidate_info_dict.get(i)
-            percentage_of_candidate_votes = round(float(number_of_candidate_votes)/float(total_votes)*100,2)
-            datafile.write(str(i)+":"+str(percentage_of_candidate_votes)+"%" +" " +"("+str(number_of_candidate_votes)+")"+"\n")
-        datafile.write("Winner:"+str(candidate)+"\n")
-        datafile.write("-----------------------") 
-
+                 percentage_of_candidate_votes = round(float(number_of_candidate_votes)/float(total_votes)*100,2)
+                 datafile.write(str(i)+":"+str(percentage_of_candidate_votes)+"%" +" " +"("+str(number_of_candidate_votes)+")"+"\n")
+                 if winning_votes < number_of_candidate_votes:
+                     winning_votes = number_of_candidate_votes
+                     candidate = i
+                 datafile.write("Winner:"+str(candidate)+"\n")
+                 datafile.write("-----------------------") 
+#
 if __name__ == "__main__":
     main()      
