@@ -1,43 +1,59 @@
 import os
 import csv
-csvpath=os.path.join(os.getcwd(),'Resources','election_data.csv')
-print(csvpath)
 
+# finds election_data csv and creates a path for it
+CSVPATH = os.path.join(os.getcwd(), 'Resources','election_data.csv')
+print(CSVPATH)
+
+# Puts the script into a function
 def main():
+    total_votes = 0
+    winning_votes = 0
+    candidate_list = []
+    candidate_info_dict = {}
 
+# opens the csv and parses the csv
+# by comma
+    with open(CSVPATH,'r',newline='') as csvfile:
+        CSVREADER = csv.reader(csvfile, delimiter=',')
 
-    with open(csvpath,'r',newline='') as csvfile:
-        csvreader = csv.reader(csvfile, delimiter=',')
+# loops through every row in csv
+        for row in CSVREADER:
+# counts every row to get total number
+# of votes
+            total_votes = total_votes+1
+# loops through third column to get each candidate
+            candidate_name = row[2]
+# appends each unique candidate
+# to candidate_list
+            if candidate_name not in candidate_list:
+                candidate_list.append(candidate_name)
+# starts out by setting each candidate
+# equal to zero
+                candidate_info_dict[candidate_name]=0
+# for each time candidate name appears, add one
+# to the value pair
 
-        csvheader=next(csvreader)
-
-        sr=0
-        winning_votes=0
-   
-        ra=[]
-        rs={}
-    
-    
-        for row in csvreader:
-            sr=sr+1
-            candidate_name=row[2]
-            if candidate_name not in ra:
-                ra.append(candidate_name)
-                rs[candidate_name]=0
-            rs[candidate_name]=rs[candidate_name]+1
+            candidate_info_dict[candidate_name]=candidate_info_dict[candidate_name]+1
         print("Election Results")
         print("-----------------------")
-        print(f"Total Votes:{sr}") 
+        print(f"Total Votes:{total_votes}") 
       
-    
-        for i in rs:
-            number_of_candidate_votes=rs.get(i)
-            percentage_of_candidate_votes=round(float(number_of_candidate_votes)/float(sr)*100,2)
-            if winning_votes<number_of_candidate_votes:
-                winning_votes=number_of_candidate_votes
-                candidate=i
-            num_votes=(rs[i])
-            print(f"{i}: {percentage_of_candidate_votes}% ({num_votes})")
+# loops through each key, value pair in candidate
+# dict
+        for i in candidate_info_dict:
+# gets each value from each candidate
+# which is number of candidate votes
+            number_of_candidate_votes = candidate_info_dict.get(i)
+# gets the percentage of candidate votes
+# per candidate
+            percentage_of_candidate_votes = round(float(number_of_candidate_votes)/float(total_votes)*100,2)
+# gets the winning candidate
+# by number of votes           
+            if winning_votes < number_of_candidate_votes:
+                winning_votes = number_of_candidate_votes
+                candidate = i
+            print(f"{i}: {percentage_of_candidate_votes}% ({number_of_candidate_votes})")
         print("-----------------------")
         print(f"Winner:{candidate}")
         print("-----------------------")
@@ -50,10 +66,10 @@ def main():
         writer = csv.writer(datafile)
         datafile.write("Election Results\n")
         datafile.write("-----------------------\n")
-        datafile.write("Total Votes:"+ str(sr)+"\n")
-        for i in rs:
-            number_of_candidate_votes=rs.get(i)
-            percentage_of_candidate_votes=round(float(number_of_candidate_votes)/float(sr)*100,2)
+        datafile.write("Total Votes:"+ str(total_votes)+"\n")
+        for i in candidate_info_dict:
+            number_of_candidate_votes = candidate_info_dict.get(i)
+            percentage_of_candidate_votes = round(float(number_of_candidate_votes)/float(total_votes)*100,2)
             datafile.write(str(i)+":"+str(percentage_of_candidate_votes)+"%" +" " +"("+str(number_of_candidate_votes)+")"+"\n")
         datafile.write("Winner:"+str(candidate)+"\n")
         datafile.write("-----------------------") 
