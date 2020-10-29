@@ -33,3 +33,9 @@
   * The winner of the election based on popular vote.
 
   * In addition, the final script should both print the analysis to the terminal and export a text file with the results.
+  
+  # Screenshots
+  
+  1. [Budget](budget_data.txt)
+  
+  Financial analysis is printed to a text file
