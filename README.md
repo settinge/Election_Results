@@ -1,5 +1,15 @@
 # Python-Challenge_1
 
+# How to Run Code
+
+1. Clone repository to a folder on your machine
+
+2. Open repository in code source editor
+
+3. Navigate to PyBank>Main_Edits.py and PyPoll>VsCode.py
+
+4. Run both scripts
+
  PyBank:
 
  The task is to create a Python script that analyzes the records to calculate each of the following:
