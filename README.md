@@ -36,6 +36,6 @@
   
   # Screenshots
   
-  1. [Budget](budget_data.txt)
+  1. [Budget](budget_data_text.txt)
   
   Financial analysis is printed to a text file
